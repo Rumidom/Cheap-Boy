@@ -9,3 +9,11 @@ If you are allergic to cheap white label hardware and would like a more polished
 # Micro-controlers alternatives 
 
 This board was designed for the raspberry pi pico or any of the generic RP2040 variants, but different flavors of microcontroller could be used. There are a few dev board alternatives that share the same form factor and should be compatible. such as the [wallnut pico W](https://wiki.walnutpi.com/en/docs/walnutpi_picow/intro/wpi_picow), [ESP32-S3 Pico](https://www.waveshare.com/wiki/ESP32-S3-Pico) or any of [the Raspberry Pico Series](https://www.raspberrypi.com/documentation/microcontrollers/pico-series.html#pico2)
+
+## TODO:
+
+## License:
+This project is MIT licensed.
+
+## Support
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/M4M41NQV7I)
