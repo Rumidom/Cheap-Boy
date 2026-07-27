@@ -1,2 +1,11 @@
-# cheap-boy
-A extremely inexpensive retro gaming handheld
+# Cheap-Boy
+Cheap-Boy is a motherboard replacement mod for the [SUP 400 in 1](https://bootleggames.fandom.com/wiki/Sup_Game_Box) portable [famiclone](https://en.wikipedia.org/wiki/Famiclone) , the 'SUP 400 in 1' handheld is an interesting piece of chinese engineering on its own. It has a full NES on a chip, a rechargeable battery, gameboy DMG inspired shell, AV output, and can be found on aliexpress for about U$10 or lower.
+
+I thought it would be interesting to try to replace the main board on this device with one featuring a microcontroller such as the raspberry pi pico, to emulate gameboy games. There are already a few emulator projects online leveraging the power of modern microcontrolers for gameboy emulation: [RP2040-GB ](https://github.com/deltabeard/RP2040-GB), [Pico GB](https://github.com/YouMakeTech/Pico-GB), [Walnut-CGB](https://github.com/Mr-PauI/Walnut-CGB
+) and using the components of the sup 400 in 1 should yield an ultra cheap yet powerful handheld. It has already been [reversed enginered](https://hackaday.io/project/175322-dissecting-a-hand-held-noac-console-sup-400-in-1) to support a custom rom. But as far as I'm aware this is the first attempt at running gameboy games on it. 
+
+If you are allergic to cheap white label hardware and would like a more polished and authentic gaming experience, I recommend the [Super DMG](https://github.com/kamicane/Super-DMG-01) which restores new life to actual nintendo silicon, or the [Gamebub](https://github.com/elipsitz/gamebub) which replicates the gameboy hardware on a FPGA aiming at high accuracy, in keeping with the theme for this project I'll try to reuse as many components from the the SUP 400 in 1 as possible, add a few inexpensive new ones, and try to keep the total cost low, while having a complete feature set.
+
+# Micro-controlers alternatives 
+
+This board was designed for the raspberry pi pico or any of the generic RP2040 variants, but different flavors of microcontroller could be used. There are a few dev board alternatives that share the same form factor and should be compatible. such as the [wallnut pico W](https://wiki.walnutpi.com/en/docs/walnutpi_picow/intro/wpi_picow), [ESP32-S3 Pico](https://www.waveshare.com/wiki/ESP32-S3-Pico) or any of [the Raspberry Pico Series](https://www.raspberrypi.com/documentation/microcontrollers/pico-series.html#pico2)
