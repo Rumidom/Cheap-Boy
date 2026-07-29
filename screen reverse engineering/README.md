@@ -20,7 +20,7 @@ The screen is probably using a 8080 parallel interface, the plan is to use two c
 I connected all 24 pins in the connector to a logic analyzer, the numbering in the 24p FPC connector corresponds to the test pads as following:
 
 <p align="center">
-  <img src="https://github.com/Rumidom/Cheap-Boy/blob/main/screen%20reverse%20engineering/Test_Pads.jpg" />
+  <img src="https://github.com/Rumidom/Cheap-Boy/blob/main/screen%20reverse%20engineering/Test_Pads.png" />
 </p>
 
 Capturing the signals on the logic analyzer I got something that resembles the pin-out provided by the first Alibaba screen manufacturer (reference code HZ028QTCS04-A0) the first two pins are indeed VCC(1) and GND(2).While the screen receives data LED(3) and RST(4) are always High, CS(5) is always Low, RS(6) is always High, WR(7) gets short bursts of pulses lasting about 10 microseconds spaced by about 15 microseconds of High signal. and RD(8) is always High. Apart from the WR pin, the other control pins do not seem to change.
