@@ -23,7 +23,7 @@ I connected all 24 pins in the connector to a logic analyzer, the numbering in t
   <img src="https://github.com/Rumidom/Cheap-Boy/blob/main/screen%20reverse%20engineering/Test_Pads.png" />
 </p>
 
-Capturing the signals on the logic analyzer I got something that resembles the pin-out provided by the first Alibaba screen manufacturer (reference code HZ028QTCS04-A0) the first two pins are indeed VCC(1) and GND(2).While the screen receives data LED(3) and RST(4) are always High, CS(5) is always Low, RS(6) is always High, WR(7) gets short bursts of pulses lasting about 10 microseconds spaced by about 15 microseconds of High signal. and RD(8) is always High. Apart from the WR pin, the other control pins do not seem to change.
+Capturing the signals on the logic analyzer I got something that resembles the pin-out provided by the first Alibaba screen manufacturer (reference code HZ028QTCS04-A0) the first two pins are indeed VCC(1) and GND(2).While the screen receives data LED(3) and RST(4) are always High, CS(5) is always Low, RS(6) is always High, WR(7) gets short bursts of pulses lasting about 10 microseconds spaced by a pause of about 15 microseconds at High signal. and RD(8) is always High. Apart from the WR pin, the other control pins do not seem to change.
 
 <p align="center">
   <img src="https://github.com/Rumidom/Cheap-Boy/blob/main/screen%20reverse%20engineering/Logic_Control_Pins.png" />
@@ -51,3 +51,27 @@ If this is the case I should be able to set the logic analyzer to trigger on the
 </p>
 
 however, I haven't been able to do that yet.
+
+### 30/07/2026:
+
+It could be that the pulses I'm seeing on the WR pin are actually a full scanline. The NES operated at 60.0988 Hz acording to NTSC standard. This means that each screen frame is drawn in 1/60 seconds, the NES renders 262 scanlines per frame, so each scanline takes (1/60)/262 seconds to draw. equal to 63.6132 microseconds, but that does not match what was mesured. 10 microseconds burst + 15 microseconds of pause. At that speed my logic analyzer operating at 120 MHZ might not be fast enough to catch the RS (D/CX) low pulse. 
+
+Under further inspection of the datasheet, I found that the ST7789V also has a VSYNC RGB mode which is more akin to how a CRT monitor works. But that interface require VSYNC,HSYNC,ENABLE and DOTCLK pins which are not exposed in the connector (assuming that the manufacturer's pinout is correct).
+
+I was also able to capture a long sequence of what seems like buddled data, starting with a long burst on the WR pin followed by a sequence of shorter bursts, but these might just be a result of the NES PPU (Picture Processing Unit) taking pauses to do operations. They do seem to be carrying color information. as you'll see next:
+
+This is the start screen after a reset where most of the screen is black:  
+<p align="center">
+  <img src="https://github.com/Rumidom/Cheap-Boy/blob/main/screen%20reverse%20engineering/Start_Screen_Photo.jpg" width="600"/>
+</p>  
+<p align="center">
+  <img src="https://github.com/Rumidom/Cheap-Boy/blob/main/screen%20reverse%20engineering/Reset_Start_Screen_LA_Capture_120mhz.png" />
+</p>  
+  
+And this is the Bubble Bubble screen where most of the screen is white:  
+<p align="center">
+  <img src="https://github.com/Rumidom/Cheap-Boy/blob/main/screen%20reverse%20engineering/Bubble_Bubble_Screen_Photo.jpg" width="600"/>
+</p>  
+<p align="center">
+  <img src="https://github.com/Rumidom/Cheap-Boy/blob/main/screen%20reverse%20engineering/Bubble_Bubble_Start_Screen_Capture_120mhz.png" />
+</p>  
