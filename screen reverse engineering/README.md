@@ -58,20 +58,20 @@ It could be that the pulses I'm seeing on the WR pin are actually a full scanlin
 
 Under further inspection of the datasheet, I found that the ST7789V also has a VSYNC RGB mode which is more akin to how a CRT monitor works. But that interface require VSYNC,HSYNC,ENABLE and DOTCLK pins which are not exposed in the connector (assuming that the manufacturer's pinout is correct).
 
-I was also able to capture a long sequence of what seems like buddled data, starting with a long burst on the WR pin followed by a sequence of shorter bursts, but these might just be a result of the NES PPU (Picture Processing Unit) taking pauses to do operations. They do seem to be carrying color information. as you'll see next:
+I was also able to capture a long sequence of what seems like buddled data, lasting about 400 microseconds and starting with a long burst on the WR pin followed by a sequence of shorter bursts, but these might just be a result of the NES PPU (Picture Processing Unit) taking pauses to do operations. They do seem to be carrying color information. as you'll see next:
 
-This is the start screen after a reset where most of the screen is black:  
+This is the start screen after a reset (where most of the screen is black):  
 <p align="center">
   <img src="https://github.com/Rumidom/Cheap-Boy/blob/main/screen%20reverse%20engineering/Start_Screen_Photo.jpg" width="600"/>
 </p>  
 <p align="center">
-  <img src="https://github.com/Rumidom/Cheap-Boy/blob/main/screen%20reverse%20engineering/Reset_Start_Screen_LA_Capture_120mhz.png" />
+  <img src="https://github.com/Rumidom/Cheap-Boy/blob/main/screen%20reverse%20engineering/Reset_Start_Screen_LA_Capture_120mhz.png" width="600" />
 </p>  
   
-And this is the Bubble Bubble screen where most of the screen is white:  
+And this is the Bubble Bubble game start screen (where most of the screen is white):  
 <p align="center">
   <img src="https://github.com/Rumidom/Cheap-Boy/blob/main/screen%20reverse%20engineering/Bubble_Bubble_Screen_Photo.jpg" width="600"/>
 </p>  
 <p align="center">
-  <img src="https://github.com/Rumidom/Cheap-Boy/blob/main/screen%20reverse%20engineering/Bubble_Bubble_Start_Screen_Capture_120mhz.png" />
+  <img src="https://github.com/Rumidom/Cheap-Boy/blob/main/screen%20reverse%20engineering/Bubble_Bubble_Start_Screen_Capture_120mhz.png" width="600" />
 </p>  
