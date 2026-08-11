@@ -110,4 +110,4 @@ Unfortunatly I was only able to capture 4 complete scanlines before the SUP 400 
   <img src="https://github.com/Rumidom/Cheap-Boy/blob/main/screen%20reverse%20engineering/Images/Screen_Back_Microscope_2.jpeg" width="600" />
 </p>  
 
-Searching for CT024TN01_V4 online, I found the manufacturer "INNOLUX" which had only a spec-sheet for what seems like a similar screen, next step is to see if I can find what the actual protocol for this screen is, just a hunch, but I think this might be a ILI9340/ILI9341 chipset. Which is just common on these low res screens. I'll try to see if the ILI9340 datasheet is a better match and maybe try to decode the new logic analyzer capture into a image.
+Searching for CT024TN01_V4 online, I found the manufacturer "INNOLUX" which had only a spec-sheet for what seems like a similar screen, next step is to see if I can find what the actual protocol for this screen is, just a hunch, but I think this might be a ILI9340/ILI9341 chipset. Which is just common on these low res screens. I'll try to match the LI9340 datasheet and the new logic analyzer capture data and maybe try decode the capture into a image.
