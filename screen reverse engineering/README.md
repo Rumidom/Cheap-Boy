@@ -1,5 +1,5 @@
 ## The Screen
-The screen is 2.4 Inch 240*320 Dots TFT LCD 
+The screen is a 2.4 Inch 240*320 Dots TFT LCD 
 <p align="center">
   <img src="https://github.com/Rumidom/Cheap-Boy/blob/main/screen%20reverse%20engineering/Images/HZ028QTCS04-A0.jpg" />
 </p>
@@ -98,7 +98,7 @@ Now I can see that each burst of the WR pin consistently takes 46.44 microsecond
   <img src="https://github.com/Rumidom/Cheap-Boy/blob/main/screen%20reverse%20engineering/Images/WR_Clock_Signature.png" width="600" />
 </p>  
 
-I manually counted the LOW pulses and got a count of 320 pulses which is exactly the number of pixels on each horizontal line on the lcd screen. It should be safe to assume that each burst of clock pulses is a scanline. I have noticed that the screen is actually stretched to fit the screen, this is particularly noticeable on the "Excitebike" game, where there is a checkerboard pattern. The screen is probably not driven directly by a NES PPU inside the [COB](https://en.wikipedia.org/wiki/Chip_on_board) chip on this unit. There should be a translation module or a modified PPU inside, this is most likely a heavily modified version of the nintendo original. So comparisons should be taken with a grain of salt.
+I manually counted the LOW pulses and got a count of 320 pulses which is exactly the number of pixels on each horizontal line on the lcd screen. It should be safe to assume that each burst of clock pulses is a scanline. I have noticed that the games are actually stretched to fit the screen, this is particularly noticeable on the "Excitebike" game, where there is a checkerboard pattern. The screen is probably not driven directly by a NES PPU inside the [COB](https://en.wikipedia.org/wiki/Chip_on_board) on this unit. There should be a translation module or a modified PPU inside, this is most likely a heavily modified version of the nintendo original. So comparisons should be taken with a grain of salt.
 
 Unfortunatly I was only able to capture 4 complete scanlines before the SUP 400 in 1 died, When I disconnected the VCC and GND wires from the PI pico they must have shortened out. I decided to remove the backlight on the LCD to see If I can find more clues on the LCD chipset, these are mirrored microscope photos of the back side close to the flex cable:
 
@@ -110,4 +110,4 @@ Unfortunatly I was only able to capture 4 complete scanlines before the SUP 400 
   <img src="https://github.com/Rumidom/Cheap-Boy/blob/main/screen%20reverse%20engineering/Images/Screen_Back_Microscope_2.jpeg" width="600" />
 </p>  
 
-Searching for CT024TN01_V4 online, I found the manufacturer "INNOLUX" which had only a spec-sheet for what seems like a similar screen, next step is to see if I can find what the actual protocol for this screen is, just a hunch but I think this might be a ILI9340/ILI9341 chipset. Which is just common on these low res screens. I'll try to see if the ILI9340 datasheet is a better match and maybe try to decode the new logic analyzer capture into a image.
+Searching for CT024TN01_V4 online, I found the manufacturer "INNOLUX" which had only a spec-sheet for what seems like a similar screen, next step is to see if I can find what the actual protocol for this screen is, just a hunch, but I think this might be a ILI9340/ILI9341 chipset. Which is just common on these low res screens. I'll try to see if the ILI9340 datasheet is a better match and maybe try to decode the new logic analyzer capture into a image.
