@@ -1,7 +1,7 @@
 ## The Screen
 The screen is 2.4 Inch 240*320 Dots TFT LCD 
 <p align="center">
-  <img src="https://github.com/Rumidom/Cheap-Boy/blob/main/screen%20reverse%20engineering/HZ028QTCS04-A0.jpg" />
+  <img src="https://github.com/Rumidom/Cheap-Boy/blob/main/screen%20reverse%20engineering/Images/HZ028QTCS04-A0.jpg" />
 </p>
 
 ## reference links
@@ -31,7 +31,7 @@ I connected all 24 pins in the connector to a logic analyzer, the numbering in t
 Capturing the signals on the logic analyzer I got something that resembles the pin-out provided by the first Alibaba screen manufacturer (reference code HZ028QTCS04-A0) the first two pins are indeed VCC(1) and GND(2).While the screen receives data LED(3) and RST(4) are always High, CS(5) is always Low, RS(6) is always High, WR(7) gets short bursts of pulses lasting about 10 microseconds spaced by a pause of about 15 microseconds at High signal. and RD(8) is always High. Apart from the WR pin, the other control pins do not seem to change.
 
 <p align="center">
-  <img src="https://github.com/Rumidom/Cheap-Boy/blob/main/screen%20reverse%20engineering/Logic_Control_Pins.png" />
+  <img src="https://github.com/Rumidom/Cheap-Boy/blob/main/screen%20reverse%20engineering/Images/Logic_Control_Pins.png" />
 </p>
 
 The data pins are all active:
