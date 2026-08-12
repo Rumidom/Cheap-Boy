@@ -129,6 +129,6 @@ RS pin being pulled low, I made a python script to try to decode the Logic analy
 It would be nice if I could get a whole frame to compare, but as I mentioned before the screen I was using in now broken. And the new logic analyzer firmware can only capture about 5 scanlines worth of data, at this point I should probably try driving the other screen I have with the interfaces I mentioned previously, I'll try to drive the 16bit bus with shift registers and a pi pico using SPI. each pixel is being drawn at about 11 Mhz which should be feasible for both the [pi pico](https://raspberrypi.stackexchange.com/questions/132758/what-is-the-pico-max-spi-frequency) and the [shiftregisters](https://e2e.ti.com/support/logic-group/logic/f/logic-forum/819554/sn74hc595-what-is-the-maximum-clock-frequency-when-vcc-3-3v-under-85-degree-ambient-temperature), so we should be able to get a 60hz refresh rate.
 
 <p align="center">
-  <img src="https://github.com/Rumidom/Cheap-Boy/blob/main/screen%20reverse%20engineering/Capture%20Decoding/Pixel_Draw_Rate.png" width="600" />
+  <img src="https://github.com/Rumidom/Cheap-Boy/blob/main/screen%20reverse%20engineering/Images/Pixel_Draw_Rate.png" width="600" />
 </p>
 
