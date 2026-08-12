@@ -5,22 +5,22 @@ This project focused on making a replacement board for the Sup 400 in 1 but, I t
 <p align="center">
   <img src="https://github.com/Rumidom/Cheap-Boy/blob/main/400%20in%201%20Info/Images/COB_Silicon.jpeg" />
 </p>
-(from the V5 board)
-
+(from the V5 board)  
+  
 There isn't much technical information online on the inner-workings of this console, but there is a project on [hackaday](https://hackaday.io/project/175322-dissecting-a-hand-held-noac-console-sup-400-in-1) and here on [Github](https://nyh-workshop.github.io/Custom-ROM-Sup-Game-Box-400in1/ROM_dump_analysis) aimed at dumping the systems ROM, both maintained by [YH-workshop](https://github.com/nyh-workshop). According to YH-workshop there are 3 types of screen initialization the last one accepting multiple screen drivers, which is problematic for this project, as I was hoping the console always used the same type of screen. but its likely that they all use the same 16 bit parallel protocol. I bought two of these consoles for reverse engineering they came on similar white label boxes:
 
 <p align="center">
-  <img src=https://github.com/Rumidom/Cheap-Boy/blob/main/400%20in%201%20Info/Images/boxes.jpg" />
+  <img src="https://github.com/Rumidom/Cheap-Boy/blob/main/400%20in%201%20Info/Images/boxes.jpg" width="600"/>
 </p>
 
 one had markings indicating that it was a version 5 and the other a version 2:
 
 <p align="center">
-  <img src="https://github.com/Rumidom/Cheap-Boy/blob/main/400%20in%201%20Info/Images/board_markings.jpg" />
+  <img src="https://github.com/Rumidom/Cheap-Boy/blob/main/400%20in%201%20Info/Images/board_markings.jpg" width="400"/>
 </p>
 
 both devices have a single layer PCB and used a BL-C5 battery for power, V2 has external audio amplifier, the the v5 had a more streamlined design the audio amplifier was integrated in the COB and the ROM chip was on a what seemed like a SOIC package, Both screens where interchangeable on both the devices.
 
 <p align="center">
-  <img src="https://github.com/Rumidom/Cheap-Boy/blob/main/400%20in%201%20Info/Images/boards.jpg" />
+  <img src="https://github.com/Rumidom/Cheap-Boy/blob/main/400%20in%201%20Info/Images/boards.jpg" width="600"/>
 </p>
