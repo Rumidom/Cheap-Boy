@@ -4,7 +4,7 @@ The screen is a 2.4 Inch 240*320 Dots TFT LCD
   <img src="https://github.com/Rumidom/Cheap-Boy/blob/main/screen%20reverse%20engineering/Images/HZ028QTCS04-A0.jpg" />
 </p>
 
-## reference links
+## Reference links
 [Alibaba HZ028QTCS04-A0](https://www.alibaba.com/product-detail/China-Manufacturer-s-ST7789V-240-X_1600553862839.html)  
 [TWJ28167A0](https://www.alibaba.com/product-detail/2-8-Tft-Lcd-Display-Module_1600589508979.html)  
 [TFT024B045](https://www.alibaba.com/product-detail/2-4-240-X-320-TFT_1600669828556.html)  
