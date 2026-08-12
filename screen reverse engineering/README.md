@@ -81,7 +81,7 @@ And this is the Bubble Bubble 2 game start screen (where most of the screen is w
   <img src="https://github.com/Rumidom/Cheap-Boy/blob/main/screen%20reverse%20engineering/Images/Bubble_Bubble_Start_Screen_Capture_120mhz.png" width="600" />
 </p>  
 
-I measured the screen and its actually 2.4 inch, but its indeed 240*320, I'm starting to suspect that this LCD might not be a ST7789V, however the pinout does seem to match
+I measured the screen and its actually 2.4 inch, but its indeed 240*320, I'm starting to suspect that this LCD might not be a ST7789V, however the pin-out does seem to match
 
 
 ### 11/08/2026:
@@ -98,9 +98,9 @@ Now I can see that each burst of the WR pin consistently takes 46.44 microsecond
   <img src="https://github.com/Rumidom/Cheap-Boy/blob/main/screen%20reverse%20engineering/Images/WR_Clock_Signature.png" width="600" />
 </p>  
 
-I manually counted the LOW pulses and got a count of 320 pulses which is exactly the number of pixels on each horizontal line on the lcd screen. It should be safe to assume that each burst of clock pulses is a scanline. I have noticed that the games are actually stretched to fit the screen, this is particularly noticeable on the ["Excitebike"](https://gamesdb.launchbox-app.com/games/images/202-excitebike) game, where there is a checkerboard pattern. The screen is probably not driven directly by a NES PPU inside the [COB](https://en.wikipedia.org/wiki/Chip_on_board) on this unit. There should be a translation module or a modified PPU inside, this is most likely a heavily modified version of the nintendo original. So comparisons should be taken with a grain of salt.
+I manually counted the LOW pulses and got a count of 320 pulses which is exactly the number of pixels on each horizontal line on the LCD screen. It should be safe to assume that each burst of clock pulses is a scanline. I have noticed that the games are actually stretched to fit the screen, this is particularly noticeable on the ["Excitebike"](https://gamesdb.launchbox-app.com/games/images/202-excitebike) game, where there is a checkerboard pattern. The screen is probably not driven directly by a NES PPU inside the [COB](https://en.wikipedia.org/wiki/Chip_on_board) on this unit. There should be a translation module or a modified PPU inside, this is most likely a heavily modified version of the Nintendo original. So comparisons should be taken with a grain of salt.
 
-Unfortunatly I was only able to capture 4 complete scanlines before the SUP 400 in 1 died, When I disconnected the VCC and GND wires from the PI pico they must have shortened out. I decided to remove the backlight on the LCD to see If I can find more clues on the LCD chipset, these are mirrored microscope photos of the back side close to the flex cable:
+Unfortunately I was only able to capture 4 complete scanlines before the SUP 400 in 1 died, When I disconnected the VCC and GND wires from the Pi Pico they must have shortened out. I decided to remove the back-light on the LCD to see If I can find more clues on the LCD chipset, these are mirrored microscope photos of the back side close to the flex cable:
 
 <p align="center">
   <img src="https://github.com/Rumidom/Cheap-Boy/blob/main/screen%20reverse%20engineering/Images/Screen_Back_Microscope_1.jpeg" width="600" />
@@ -119,15 +119,16 @@ The ILI9340 datasheet is very similar to the ST7789V datasheet,and it has pretty
   <img src="https://github.com/Rumidom/Cheap-Boy/blob/main/screen%20reverse%20engineering/Images/ILI9340_16bit_RGB_interface_Table.png" width="600" />
 </p>
 
-DC/RS is pulled low a comand is sent and then the colors are sent pixel by pixel until the end of the scanline, natively the screen is in portrait orientation thus the scanline on the table only goes to 240, during screen initialization a comand is probably sent to put it in landscape orientation. Still I could not find any start scanline command, or the 
-RS pin being pulled low, I made a python script to try to decode the Logic analyzers data, using the same color encoding as the table above, and was able to get a image out but the colors seem to be a bit off and it does seem to be losing pixels with the current logic analyzer setup:
+DC/RS is pulled low a command is sent and then the colors are sent pixel by pixel until the end of the scanline, natively the screen is in portrait orientation thus the scanline on the table only goes to 240, during screen initialization a command is probably sent to put it in landscape orientation. Still I could not find any start scanline command, or the 
+RS pin being pulled low, I made a python script to try to decode the Logic analyzers data, using the same color encoding as the table above, and was able to get an image out but the colors seem to be a bit off and it does seem to be losing pixels with the current logic analyzer setup:
 
 <p align="center">
   <img src="https://github.com/Rumidom/Cheap-Boy/blob/main/screen%20reverse%20engineering/Capture%20Decoding/Decoded_Start_Screen.png" width="600" />
 </p>
 
-It would be nice if I could get a whole frame to compare, but as I metioned before the screen I was using in now broken, and the new logic analyzer firmware can only capture about 5 scanlines worth of data, at this point I should probably try driving the other screen I have with the interfaces I mentioned previously, I'll try to drive the 16bit bus with shift registers and a pi pico using SPI. each pixel is being drawn at about 11 Mhz which should be feaseble for both the [pi pico](https://raspberrypi.stackexchange.com/questions/132758/what-is-the-pico-max-spi-frequency) and the [shiftregisters](https://e2e.ti.com/support/logic-group/logic/f/logic-forum/819554/sn74hc595-what-is-the-maximum-clock-frequency-when-vcc-3-3v-under-85-degree-ambient-temperature), so we should be able to get a 60hz refresh rate.
+It would be nice if I could get a whole frame to compare, but as I mentioned before the screen I was using in now broken. And the new logic analyzer firmware can only capture about 5 scanlines worth of data, at this point I should probably try driving the other screen I have with the interfaces I mentioned previously, I'll try to drive the 16bit bus with shift registers and a pi pico using SPI. each pixel is being drawn at about 11 Mhz which should be feasible for both the [pi pico](https://raspberrypi.stackexchange.com/questions/132758/what-is-the-pico-max-spi-frequency) and the [shiftregisters](https://e2e.ti.com/support/logic-group/logic/f/logic-forum/819554/sn74hc595-what-is-the-maximum-clock-frequency-when-vcc-3-3v-under-85-degree-ambient-temperature), so we should be able to get a 60hz refresh rate.
 
 <p align="center">
   <img src="https://github.com/Rumidom/Cheap-Boy/blob/main/screen%20reverse%20engineering/Capture%20Decoding/Pixel_Draw_Rate.png" width="600" />
 </p>
+
