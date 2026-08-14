@@ -148,16 +148,7 @@ Which should be the command to start writing on the screen, the datasheet also s
 width="800" />
 </p>
 
-I wrote a small test script in micro-python to send data to the screen using two cascading 74HC595 shift registers and a Pi  Pico, I'm also using another Pi Pico as a logic analyzer to double check the wiring and signals, and was able to send commands to the screen, . on a [micropython library for SPI](https://github.com/jeffmer/micropython-ili9341/tree/master) someone already copied the registers adresses from the datasheet so I'm using those and they seem to work as I was able to get the screen out of sleep and turn off. 
-
-
-<p align="center">
-  <img src="https://github.com/Rumidom/Cheap-Boy/blob/main/screen%20reverse%20engineering/Images/Screen_Test_0.png"
-height="400" />
-</p>
-
-
-The Micropython library had lots of commands sent on initialization, I don't think they are all necessary or suitable for 16-bit mode, I'll have to test. This is the default state of the configuration registers after reset:
+I wrote a small [test script](https://github.com/Rumidom/Cheap-Boy/blob/main/screen%20reverse%20engineering/Screen%20Test%20Micropython/ScreenTest_ili9340.py) in micro-python to send data to the screen using two cascading 74HC595 shift registers and a Pi  Pico, I'm also using another Pi Pico as a logic analyzer to double check the wiring and signals, and was able to send commands to the screen, . on a [micropython library for SPI](https://github.com/jeffmer/micropython-ili9341/tree/master) someone already copied the registers adresses from the datasheet so I'm using those and they seem to work as I was able to get the screen out of sleep and turn off. 
 
 ```python
 #init Control Pins
@@ -177,6 +168,15 @@ SHF_Latch_pin.value(0)
 sendScreenCommand(_SLPOUT)
 sendScreenCommand(_DISPOFF)
 ```
+
+<p align="center">
+  <img src="https://github.com/Rumidom/Cheap-Boy/blob/main/screen%20reverse%20engineering/Images/Screen_Test_0.png"
+height="400" />
+</p>
+
+
+The Micropython library had lots of commands sent on initialization, I don't think they are all necessary or suitable for 16-bit mode, I'll have to test. This is the default state of the configuration registers after reset:
+
 
 <p align="center">
   <img src="https://github.com/Rumidom/Cheap-Boy/blob/main/screen%20reverse%20engineering/Images/Config_Registers_After_Reset.png"
