@@ -13,6 +13,9 @@ If you are allergic to cheap white label hardware and would like a more polished
 This board was designed for the Raspberry Pi Pico or any of the generic RP2040 variants, but different flavors of micro-controller could be used. There are a few dev board alternatives that share the same form factor and should be compatible. such as the [Wallnut Pico W](https://wiki.walnutpi.com/en/docs/walnutpi_picow/intro/wpi_picow), [ESP32-S3 Pico](https://www.waveshare.com/wiki/ESP32-S3-Pico) or any of the [Raspberry Pico series](https://www.raspberrypi.com/documentation/microcontrollers/pico-series.html#pico2)
 
 ## TODO:
+- [x] Reverse Engineer 16-bit screen protocol
+- [ ] Write a Screen library for the ILI934X (might need multiple later on, for other types of screen)
+- [ ] Create first revision of the PCB   
 
 ## License:
 This project is MIT licensed.
