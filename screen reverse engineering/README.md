@@ -120,15 +120,48 @@ The ILI9340 datasheet is very similar to the ST7789V datasheet,and it has pretty
 </p>
 
 DC/RS is pulled low a command is sent and then the colors are sent pixel by pixel until the end of the scanline, natively the screen is in portrait orientation thus the scanline on the table only goes to 240, during screen initialization a command is probably sent to put it in landscape orientation. Still I could not find any start scanline command, or the 
-RS pin being pulled low, I made a python script to try to decode the Logic analyzers data, using the same color encoding as the table above, and was able to get an image out but the colors seem to be a bit off and it does seem to be losing pixels with the current logic analyzer setup:
+RS pin being pulled low, I made a python script to try to decode the Logic analyzers data, using the same color encoding as the table above, and triggering pixel recording on WR rising edge,I was able to get an image out but the colors seem to be a bit off and it does seem to be losing pixels with the current logic analyzer setup:
 
 <p align="center">
   <img src="https://github.com/Rumidom/Cheap-Boy/blob/main/screen%20reverse%20engineering/Capture%20Decoding/Decoded_Start_Screen.png" width="600" />
 </p>
 
-It would be nice if I could get a whole frame to compare, but as I metioned before the screen I was using in now broken, and the new logic analyzer firmware can only capture about 5 scanlines worth of data, at this point I should probably try driving the other screen I have with the interfaces I mentioned previously, I'll try to drive the 16bit bus with shift registers and a pi pico using SPI. each pixel is being drawn at about 11 Mhz maybe half that considering the long pulses the [pi pico](https://raspberrypi.stackexchange.com/questions/132758/what-is-the-pico-max-spi-frequency) maximum clock speed for SPI is 62.5MHz and the [shiftregister](https://e2e.ti.com/support/logic-group/logic/f/logic-forum/819554/sn74hc595-what-is-the-maximum-clock-frequency-when-vcc-3-3v-under-85-degree-ambient-temperature) maximum clock is about 12.5MHz, but this is to shift 1 bit into the 16bit bus, to shift all 16 bits would take 5*16 = 80MHZ, so maitaining 60 hz refresh rate with the current protocol might not be possible.
+It would be nice if I could get a whole frame to compare, but as I metioned before the screen I was using in now broken, and the new logic analyzer firmware can only capture about 5 scanlines worth of data, at this point I should probably try driving the other screen I have with the interfaces I mentioned previously, I'll try to drive the 16bit bus with shift registers and a pi pico using SPI. each pixel is being drawn at about 11 Mhz maybe half that considering the long pulses the [pi pico](https://raspberrypi.stackexchange.com/questions/132758/what-is-the-pico-max-spi-frequency) maximum clock speed for SPI is 62.5MHz and the [shiftregister](https://e2e.ti.com/support/logic-group/logic/f/logic-forum/819554/sn74hc595-what-is-the-maximum-clock-frequency-when-vcc-3-3v-under-85-degree-ambient-temperature) maximum clock is about 12.5MHz, but this is to shift 1 bit into the 16bit bus, to shift all 16 bits would take 5*16 = 80MHZ, so maitaining 60 hz refresh rate like the NES might not be possible.
 
 <p align="center">
   <img src="https://github.com/Rumidom/Cheap-Boy/blob/main/screen%20reverse%20engineering/Images/Pixel_Draw_Rate.png" width="600" />
 </p>
 
+### 13/08/2026:
+
+Looking at the ILI9340 commands on the datasheet I found this:
+
+<p align="center">
+  <img src="https://github.com/Rumidom/Cheap-Boy/blob/main/screen%20reverse%20engineering/Images/Memory_Write_Command.png" width="600" />
+</p>
+
+Which should be the command to start writing on the screen, the datasheet also states that there are two transfer modes available, the first one (if I understand correctly) sends a write command and then all the scanlines the second mode sends one command for each scanline (I'm assuming the "Image Data Frame" on the datasheet refers to one scanline). I belive the screen is working in transfer mode 1 since I haven't seen this write command yet, in mode 1 it should only happen once every Screen frame, this is exactly the same for the ST7789V, and the 'Memory Write' command is the same for both 
+'00101100XXXXXXXX'.
+
+<p align="center">
+  <img src="https://github.com/Rumidom/Cheap-Boy/blob/main/screen%20reverse%20engineering/Images/Data_transfer_Mode_1.png"
+width="600" />
+</p>
+
+I wrote a small test script in micropython to send data to the screen using two cascading 74HC595 shift registers and a Pi  Pico, I'm also using another Pi Pico as a logic analyzer to double check the wiring and signals, and was able to send commands to the screen, . on a [micropython library for SPI](https://github.com/jeffmer/micropython-ili9341/tree/master) someone already copied the registers adresses from the datasheet so I'm using those and they seem to work as I was able to get the screen out of sleep and turn off. 
+
+
+<p align="center">
+  <img src="https://github.com/Rumidom/Cheap-Boy/blob/main/screen%20reverse%20engineering/Images/Screen_Test_0.png"
+width="600" />
+</p>
+
+
+Looking at the library there are lots of commands sent on initialization, I don't think they are all necessary or suitable for 16-bit mode, I'll have to test. This is the defaut state of the configuration registers after reset:
+
+<p align="center">
+  <img src="https://github.com/Rumidom/Cheap-Boy/blob/main/screen%20reverse%20engineering/Images/Config_Registers_After_Reset.png"
+width="600" />
+</p>
+
+next I'll see if I can draw on the screen.
