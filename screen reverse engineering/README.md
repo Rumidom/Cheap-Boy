@@ -206,4 +206,4 @@ sendScreenCommand(0x00)
 width="600" />
 </p>
 
-I think the colors are a bit pastel looking and probably need corection on initialization to match the panel, but that pretty much confirms it. we are dealing with a ILI9340 chipset. It seems like the ST7789 is a sucessor to the ILI9340 and do have different initialization sequences, but the ILI9340 seems to be cheaper and more widely available so should be more comumn on 400 in 1 consoles. 
+I think the colors are a bit pastel looking and need correction on initialization to match the panel, but that pretty much confirms it. We are dealing with a ILI934X chipset. It seems like the ST7789 is a sucessor to the Ilitek one, they do have different initialization sequences so I might need to write multiple drivers as I find them, but the ILI934X seems to be cheaper and more widely available so should be more comum on 400 in 1 consoles. 
