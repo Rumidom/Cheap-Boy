@@ -178,10 +178,32 @@ height="500" />
 
 The Micropython library had lots of commands sent on initialization, I don't think they are all necessary or suitable for 16-bit mode, I'll have to test. This is the default state of the configuration registers after reset:
 
-
 <p align="center">
   <img src="https://github.com/Rumidom/Cheap-Boy/blob/main/screen%20reverse%20engineering/Images/Config_Registers_After_Reset.png"
 width="600" />
 </p>
 
-next I'll see if I can draw on the screen.
+### 13/08/2027:
+Searching for a initialization sequence for the ILI9340, I found this [other library](https://gist.github.com/postmodern/ed6e670999f456ad9f13) I just copied the initialization, and was able to draw 3 color stripes on the screen:
+
+
+```python
+screenInit()
+
+#draw stripes
+sendScreenCommand(_RAMWR)
+for i in range(240*30):
+    sendScreenData_16(0b1111100000000000)
+for i in range(240*30):
+    sendScreenData_16(0b0000011111100000)
+for i in range(240*30):
+    sendScreenData_16(0b0000000000011111)
+sendScreenCommand(0x00)
+```
+
+<p align="center">
+  <img src="https://github.com/Rumidom/Cheap-Boy/blob/main/screen%20reverse%20engineering/Images/Color_Stripes_Test.png"
+width="600" />
+</p>
+
+I think the colors are a bit pastel looking and probably need corection on initialization to match the panel, but that pretty much confirms it. we are dealing with a ILI9340 chipset. It seems like the ST7789 is a sucessor to the ILI9340 and do have different initialization sequences, but the ILI9340 seems to be cheaper and more widely available so should be more comumn on 400 in 1 consoles. 
