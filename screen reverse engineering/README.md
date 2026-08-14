@@ -202,7 +202,7 @@ sendScreenCommand(0x00)
 ```
 
 <p align="center">
-  <img src="https://github.com/Rumidom/Cheap-Boy/blob/main/screen%20reverse%20engineering/Images/Color_Stripes_Test.png"
+  <img src="https://github.com/Rumidom/Cheap-Boy/blob/main/screen%20reverse%20engineering/Images/Color_Stripes_Test.jpg"
 width="600" />
 </p>
 
