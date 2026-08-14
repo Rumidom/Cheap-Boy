@@ -155,9 +155,10 @@ I wrote a small [test script](https://github.com/Rumidom/Cheap-Boy/blob/main/scr
 BL_pin.value(1)
 RST_pin.value(0)
 RST_pin.value(1)
+CS_pin.value(0)
 RS_pin.value(1)
 WR_pin.value(1)
-CS_pin.value(0)
+
 
 #init Shift Registers
 SHF_Clck_pin.value(0)
@@ -171,7 +172,7 @@ sendScreenCommand(_DISPOFF)
 
 <p align="center">
   <img src="https://github.com/Rumidom/Cheap-Boy/blob/main/screen%20reverse%20engineering/Images/Screen_Test_0.png"
-height="400" />
+height="500" />
 </p>
 
 
