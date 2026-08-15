@@ -30,9 +30,10 @@ _ENA3G = const(0xf2)     # Enable 3G
 _PGAMCTRL = const(0xe0)  # Positive Gamma Control
 _NGAMCTRL = const(0xe1)  # Negative Gamma Control
 
-BL_pin  =  machine.Pin(27,machine.Pin.OUT)
+BL_pin  =  machine.Pin(6,machine.Pin.OUT)
+CS_pin  =  machine.Pin(7,machine.Pin.OUT)
 RST_pin = machine.Pin(26,machine.Pin.OUT)
-CS_pin  =  machine.Pin(22,machine.Pin.OUT)
+
 RS_pin  =  machine.Pin(20,machine.Pin.OUT)
 WR_pin  =  machine.Pin(23,machine.Pin.OUT)
 SHF_DataIn_pin  =  machine.Pin(3,machine.Pin.OUT)
@@ -238,7 +239,8 @@ def screenInit():
     sendScreenCommand(0x29)
 
 screenInit()
-#draw line
+
+#draw stripes
 sendScreenCommand(_RAMWR)
 for i in range(240*30):
     sendScreenData_16(0b1111100000000000)
