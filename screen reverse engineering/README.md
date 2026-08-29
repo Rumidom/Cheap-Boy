@@ -1,7 +1,7 @@
 ## The Screen
 The screen is a 2.4 Inch 240*320 Dots TFT LCD 
 <p align="center">
-  <img src="https://github.com/Rumidom/Cheap-Boy/blob/main/screen%20reverse%20engineering/Images/HZ028QTCS04-A0.jpg" />
+  <img src="https://github.com/Rumidom/Cheap-Boy/blob/main/PCB_3D.png" />
 </p>
 
 ## Reference links
