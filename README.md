@@ -18,8 +18,8 @@ This board is designed for the Raspberry Pi Pico or any of the generic RP2040 va
 
 ## TODO:
 - [x] Reverse Engineer 16-bit screen protocol
+- [X] Create first revision of the PCB   
 - [ ] Write a Screen library for the ILI934X (might need multiple later on, for other types of screen)
-- [ ] Create first revision of the PCB   
 
 ## License:
 This project is MIT licensed.
