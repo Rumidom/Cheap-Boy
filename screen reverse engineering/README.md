@@ -208,7 +208,7 @@ width="600" />
 
 I think the colors are a bit pastel looking and need correction on initialization to match the panel, but that pretty much confirms it. We are dealing with a ILI934X chipset. It seems like the ST7789 is a sucessor to the Ilitek one, they do have different initialization sequences so I might need to write multiple drivers as I find them, the ILI934X seems to be cheaper and more widely available so should be more comum on 400 in 1 consoles. 
 
-### 13/08/2027:
+### 26/08/2026:
 
 I bit-banged the first example. But should be able to drive it with PIO closer to the pi pico system frequency, However SPI is Ideal as it would allow for others microcontrollers to be used.
 
