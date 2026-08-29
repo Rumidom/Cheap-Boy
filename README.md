@@ -1,4 +1,8 @@
 # Cheap-Boy
+<p align="center">
+  <img src="https://github.com/Rumidom/Cheap-Boy/blob/main/PCB_3D.png" />
+</p>
+
 Cheap-Boy is a motherboard replacement mod for the [SUP 400 in 1](https://bootleggames.fandom.com/wiki/Sup_Game_Box) portable [famiclone](https://en.wikipedia.org/wiki/Famiclone) , the 'SUP 400 in 1' handheld is an interesting piece of Chinese engineering on its own. It has a full NES on a chip, a rechargeable battery, Game-Boy DMG inspired shell, AV output, and can be found on Aliexpress for about U$10 or lower.
 
 I thought it would be interesting to try to replace the main board on this device with one featuring a micro-controller such as the Raspberry Pi Pico, to emulate Game-Boy games. There are already a few emulator projects online leveraging the power of modern micro-controllers for gameboy and retro emulation: [RP2040-GB ](https://github.com/deltabeard/RP2040-GB), [Pico GB](https://github.com/YouMakeTech/Pico-GB), [Walnut-CGB](https://github.com/Mr-PauI/Walnut-CGB
